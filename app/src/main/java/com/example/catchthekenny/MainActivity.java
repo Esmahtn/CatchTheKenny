@@ -3,6 +3,7 @@ package com.example.catchthekenny;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -14,6 +15,18 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     TextView scoreText;
     TextView timeText;
+    ImageView imageView0;
+    ImageView imageView1;
+    ImageView imageView2;
+    ImageView imageView3;
+    ImageView imageView4;
+    ImageView imageView5;
+    ImageView imageView6;
+    ImageView imageView7;
+    ImageView imageView8;
+
+    ImageView[] imageArray;
+
     int score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +42,25 @@ public class MainActivity extends AppCompatActivity {
         timeText = (TextView) findViewById(R.id.timeText);
 
         scoreText = (TextView) findViewById(R.id.scoreText);
+
+        // ImageView'ları initialize etme
+        imageView0 = (ImageView) findViewById(R.id.imageView0); // Doğru değişken adı ve cast
+        imageView1 = (ImageView) findViewById(R.id.imageView1);
+        imageView2 = (ImageView) findViewById(R.id.imageView2);
+        imageView3 = (ImageView) findViewById(R.id.imageView3);
+        imageView4 = (ImageView) findViewById(R.id.imageView4);
+        imageView5 = (ImageView) findViewById(R.id.imageView5);
+        imageView6 = (ImageView) findViewById(R.id.imageView6);
+        imageView7 = (ImageView) findViewById(R.id.imageView7);
+        imageView8 = (ImageView) findViewById(R.id.imageView8);
+        imageArray = new ImageView[] { imageView0, imageView1, imageView2, imageView3, imageView4 , imageView5, imageView6,
+                imageView7, imageView8
+        };
         score = 0;
 
-        new CountDownTimer( 10000 , 1000){
+        hideImages();
 
+        new CountDownTimer( 10000 , 1000){
             @Override
             public void onFinish() {
 
@@ -51,5 +79,10 @@ public class MainActivity extends AppCompatActivity {
         score++;
         scoreText.setText("Score: " +  score);
 
+    }
+    public void hideImages(){
+        for (ImageView image : imageArray){
+            image.setVisibility(View.INVISIBLE);
+        }
     }
 }
