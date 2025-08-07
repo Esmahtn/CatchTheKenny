@@ -1,6 +1,7 @@
 package com.example.catchthekenny;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,9 +30,24 @@ public class MainActivity extends AppCompatActivity {
 
         scoreText = (TextView) findViewById(R.id.scoreText);
         score = 0;
+
+        new CountDownTimer( 10000 , 1000){
+
+            @Override
+            public void onFinish() {
+
+
+            }
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeText.setText("time: " + millisUntilFinished/1000);
+
+            }
+        }.start();
     }
     public void incraeseScore(View view) {
-        
+
         score++;
         scoreText.setText("Score: " +  score);
 
