@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         score = 0;
     }
     public void incraeseScore(View view) {
+        
         score++;
         scoreText.setText("Score: " +  score);
 
