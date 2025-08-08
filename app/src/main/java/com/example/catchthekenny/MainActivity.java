@@ -71,8 +71,12 @@ public class MainActivity extends AppCompatActivity {
         new CountDownTimer( 10000 , 1000){
             @Override
             public void onFinish() {
+                timeText.setText("Time OFF!");
+                handler.removeCallbacks(runnable);
 
-
+                for (ImageView image : imageArray){
+                    image.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
