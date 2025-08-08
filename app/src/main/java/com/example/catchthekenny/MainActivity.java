@@ -2,6 +2,7 @@ package com.example.catchthekenny;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
     TextView scoreText;
@@ -26,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView8;
 
     ImageView[] imageArray;
+    Handler handler;
+    Runnable runnable;
+
+
 
     int score;
     @Override
@@ -81,8 +89,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void hideImages(){
-        for (ImageView image : imageArray){
-            image.setVisibility(View.INVISIBLE);
-        }
+        handler= new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                for (ImageView image : imageArray){
+                    image.setVisibility(View.INVISIBLE);
+                }
+
+                Random random = new Random();
+                int i = random.nextInt(9);
+                imageArray[i].setVisibility(View.VISIBLE);
+                handler.postDelayed(this,500);
+            }
+        };
+
+        handler.post(runnable);
+
+
+
     }
 }
